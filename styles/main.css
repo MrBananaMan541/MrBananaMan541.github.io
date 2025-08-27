@@ -2,4 +2,40 @@
     font-size: 1.1em;
     font-family: Quicksand;
     background-color: #ededed;
+    margin: 0;
+}
+
+html {
+    scroll-behavior:smooth
+}
+
+#menu {
+    position: sticky;
+    background-color: #4f6344;
+    color: #ededed;
+    padding: 1.5rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    
+}
+
+#menu a {
+    background-color: #4f6344;
+}
+
+#menu a:link {
+    color: #ededed;
+    text-decoration: none;
+}
+#menu a:visited {
+    color: #ededed;
+}
+#menu a:focus {
+    border: 1px solid black;
+}
+#menu a:hover {
+    color: #b8b8b8;
+}
+#menu a:active {
+    color: #ededed;
 }
