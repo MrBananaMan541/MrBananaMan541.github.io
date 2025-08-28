@@ -9,7 +9,29 @@ html {
     scroll-behavior:smooth
 }
 
+#home-page {
+    grid-area: home-page;
+}
+
+#github {
+    grid-area: github;
+}
+
+#title {
+    grid-area: title;
+}
+
+#old-web-page {
+    grid-area: old-web-page;
+}
+
 #menu {
+    display: grid;
+    max-width: 90vw;
+    grid-template-rows: 7vw 8vw auto 15vw;
+    grid-template-columns: 3rem 3rem 3rem 3rem;
+    grid-template-areas: 
+        "home-page github title old-web-page";
     position: sticky;
     background-color: #4f6344;
     color: #ededed;
