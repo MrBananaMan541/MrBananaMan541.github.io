@@ -1,5 +1,5 @@
 * {
-    font-size: 1.1em;
+    font-size: 1.2rem;
     font-family: Quicksand;
     background-color: #ededed;
     margin: 0;
@@ -11,38 +11,45 @@ html {
 
 #home-page {
     grid-area: home-page;
+    text-align: center;
+    background-color: #425339;
 }
 
 #github {
     grid-area: github;
+    text-align: center;
+    background-color: #425339;
 }
 
 #title {
     grid-area: title;
+    text-align: center;
+    font-size: 1.2rem;
+    background-color: #425339;
 }
 
 #old-web-page {
     grid-area: old-web-page;
+    text-align: center;
+    background-color: #425339;
 }
 
 #menu {
     display: grid;
-    max-width: 90vw;
-    grid-template-rows: 7vw 8vw auto 15vw;
-    grid-template-columns: 3rem 3rem 3rem 3rem;
+    grid-template-columns: 10vw 16vw auto 26vw;
+    grid-template-rows: 2rem;
     grid-template-areas: 
         "home-page github title old-web-page";
     position: sticky;
-    background-color: #4f6344;
+    background-color: #425339;
     color: #ededed;
-    padding: 1.5rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
-    
+    padding: 1.2rem;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 #menu a {
-    background-color: #4f6344;
+    background-color: #425339;
 }
 
 #menu a:link {
@@ -60,4 +67,10 @@ html {
 }
 #menu a:active {
     color: #ededed;
+}
+
+#intro {
+    background-color: #4f6344;
+    color: #ededed;
+    padding: 1rem;
 }
