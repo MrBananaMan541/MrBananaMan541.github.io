@@ -73,4 +73,43 @@ html {
     background-color: #4f6344;
     color: #ededed;
     padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+#quickIntro {
+    background-color: #4f6344;
+    color: #ededed;
+    margin: 4rem;
+    margin-top: 0.5rem;
+    padding: 4rem;
+    text-align: center;
+}
+
+#quickIntro b, #quickIntro h1 {
+    background-color: #4f6344;
+    color: #ededed;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+#introButtons {
+    background-color: #4f6344;
+    color: #ededed;
+    margin-top: 2rem;
+}
+
+#introButtons button {
+    border-color: #ededed;
+    background-color: #ededed;
+    border-radius: 0.25rem;
+    margin: 0.5rem;
+    padding: 1rem;
+    box-shadow: 2px 2px;
+}
+
+#personalPicture {
+    width: 40%;
+    margin-left: 3rem;
+    margin-top: 1rem;
 }
