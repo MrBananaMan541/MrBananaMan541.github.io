@@ -99,13 +99,21 @@ html {
     margin-top: 2rem;
 }
 
-#introButtons button {
+#gameResume, #webResume {
     border-color: #ededed;
     background-color: #ededed;
     border-radius: 0.25rem;
-    margin: 0.5rem;
-    padding: 1rem;
+    margin: 1rem;
+    padding: 1rem 0 1rem 0;
     box-shadow: 2px 2px;
+}
+
+#gameResume {
+    margin-top: 2rem;
+}
+
+#gameResume a, #webResume a {
+    
 }
 
 #personalPicture {
