@@ -80,9 +80,9 @@ html {
 #quickIntro {
     background-color: #4f6344;
     color: #ededed;
-    margin: 4rem;
+    margin: 3rem;
     margin-top: 0.5rem;
-    padding: 4rem;
+    padding: 3rem;
     text-align: center;
 }
 
@@ -100,28 +100,43 @@ html {
 }
 
 #gameResume, #webResume {
-    border-color: #ededed;
     background-color: #ededed;
+    margin: 1rem 5rem;
+    border-color: #ededed;
     border-radius: 0.25rem;
-    margin: 1rem;
-    padding: 1rem 0 1rem 0;
-    box-shadow: 2px 2px;
+    box-shadow: black 2px 2px;
 }
 
 #gameResume {
-    margin-top: 2rem;
+    margin-top: 3rem;
 }
 
 #gameResume a, #webResume a {
-    
+    display: block;
+    color: black;
+    border-radius: 0.25rem;
+    padding: 1rem 2rem 1rem 2rem;
 }
 
 #personalPicture {
     width: 40%;
-    margin-left: 3rem;
-    margin-top: 1rem;
+    margin: 1rem 0 1rem 3rem;
+}
+
+#aboutMe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #4f6344;
+}
+
+#aboutMe h1 {
+    font-size: xx-large;
+    margin: 1rem;
 }
 
 footer {
     text-align: center;
+    margin: 2rem 0 1rem 0;
 }
