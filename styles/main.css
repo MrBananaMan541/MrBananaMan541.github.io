@@ -124,16 +124,47 @@ html {
 }
 
 #aboutMe {
+    margin: 3rem 15rem;
+}
+
+#aboutMe h1 {
+    color: #4f6344;
+    text-align: center;
+}
+
+#aboutMeText {
     display: flex;
-    flex-direction: column;
     align-items: center;
     text-align: center;
-    color: #4f6344;
 }
 
 #aboutMe h1 {
     font-size: xx-large;
     margin: 1rem;
+}
+
+.skills {
+    margin: 1rem;
+    font-size: 0.9em;
+    color: rgb(70, 70, 70);
+}
+
+#gamesCarousel {
+    background-color: #4f6344;
+}
+
+#gamesCarousel h1 {
+    color: #ededed;
+    background-color: #4f6344;
+}
+
+#gamesPortfolio {
+    text-align: center;
+    margin: 1rem;
+}
+
+#contactMe {
+    margin: 2rem 10rem;
 }
 
 footer {
