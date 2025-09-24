@@ -145,8 +145,20 @@ html {
 
 .skills {
     margin: 1rem;
-    font-size: 0.9em;
     color: rgb(70, 70, 70);
+}
+
+.skills p {
+    font-size: 1rem;
+}
+
+h3 {
+    font-weight: 600;
+}
+
+#helloKitty {
+    width: 70%;
+    border-radius: 50%;
 }
 
 #gamesCarousel {
