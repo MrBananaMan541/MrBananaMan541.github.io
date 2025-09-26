@@ -163,11 +163,18 @@ h3 {
 
 #gamesCarousel {
     background-color: #4f6344;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #gamesCarousel h1 {
     color: #ededed;
     background-color: #4f6344;
+    font-size: 2rem;
+    text-align: center;
+    margin: 1rem;
+    padding: 2rem 0;
 }
 
 #gamesPortfolio {
