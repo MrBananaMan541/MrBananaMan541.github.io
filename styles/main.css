@@ -1,13 +1,19 @@
 * {
     font-size: 1.2rem;
     font-family: Quicksand;
+    font-weight: 500;
     background-color: #ededed;
     margin: 0;
     line-height: 1.4rem;
+    letter-spacing: 0.5px;
 }
 
 html {
     scroll-behavior:smooth
+}
+
+a {
+    font-weight: 600;
 }
 
 #home-page {
@@ -37,16 +43,18 @@ html {
 
 #menu {
     display: grid;
-    grid-template-columns: 10vw 16vw auto 26vw;
+    grid-template-columns: 10vw 18vw auto 26vw;
     grid-template-rows: 2rem;
     grid-template-areas: 
         "home-page github title old-web-page";
     position: sticky;
+    top: 0;
     background-color: #425339;
     color: #ededed;
     padding: 1.2rem;
     padding-left: 0;
     padding-right: 0;
+    letter-spacing: 2px;
 }
 
 #menu a {
@@ -91,7 +99,10 @@ html {
     background-color: #4f6344;
     color: #ededed;
     font-size: 2.5rem;
+    font-weight: bold;
     margin-bottom: 1rem;
+    line-height: normal;
+    letter-spacing: 1px;
 }
 
 #introButtons {
@@ -117,6 +128,7 @@ html {
     color: black;
     border-radius: 0.25rem;
     padding: 1rem 2rem 1rem 2rem;
+    text-decoration: none;
 }
 
 #personalPicture {
@@ -125,12 +137,13 @@ html {
 }
 
 #aboutMe {
-    margin: 3rem 15rem;
+    margin: 3rem 7rem;
 }
 
 #aboutMe h1 {
     color: #4f6344;
     text-align: center;
+    font-weight: bold;
 }
 
 #aboutMeText {
@@ -150,7 +163,8 @@ html {
 }
 
 .skills p {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
 }
 
 h3 {
@@ -173,9 +187,11 @@ h3 {
     color: #ededed;
     background-color: #4f6344;
     font-size: 2rem;
+    font-weight: bold;
     text-align: center;
     margin: 1rem;
     padding: 2rem 0;
+    letter-spacing: 2px;
 }
 
 #imageWrapper {
@@ -192,54 +208,122 @@ h3 {
 #gamesPortfolio h1 {
     color: #4f6344;
     font-size: 2rem;
+    font-weight: bold;
     margin: 2rem;
     text-align: center;
+    letter-spacing: 2px;
 }
 
 #projects {
-    max-width: 43%;
+    max-width: 53%;
     font-size: 0.9rem;
+    line-height: 1.5rem;
+    color: rgb(70, 70, 70);
 }
 
 h3 {
     font-size: 1.2rem;
 }
 
-.githubLinks {
+.githubLinks, #peacelandLink, #quothTheRavenLink {
     background-color: black;
-    margin: 1rem 20rem 1rem 0;
-    border-color: black;
-    border-radius: 0.25rem;
+    margin: 1.7rem 0;
+    width: 48%;
 }
 
-.githubLinks a {
+#peacelandLink {
+    width: 49%
+}
+
+#quothTheRavenLink {
+    width: 34%;
+}
+
+.githubLinks a, #peacelandLink a, #quothTheRavenLink a {
     display: block;
     background-color: black;
     color: #ededed;
     font-size: 1rem;
-    border-radius: 0.25rem;
+    letter-spacing: 1px;
     padding: 1rem 2rem 1rem 2rem;
 }
 
-.githubLinks a:link {
+.githubLinks a:link, #peacelandLink a:link, #quothTheRavenLink a:link {
     color: #ededed;
     text-decoration: none;
 }
-.githubLinks a:visited {
+.githubLinks a:visited, #peacelandLink a:visited, #quothTheRavenLink a:visited {
     color: #ededed;
 }
-.githubLinks a:focus {
+.githubLinks a:focus, #peacelandLink a:focus, #quothTheRavenLink a:focus {
     border: 1px solid rgb(70, 70, 70);
 }
-.githubLinks a:hover {
+.githubLinks a:hover, #peacelandLink a:hover, #quothTheRavenLink a:hover {
     color: #b8b8b8;
 }
-.githubLinks a:active {
+.githubLinks a:active, #peacelandLink a:active, #quothTheRavenLink a:active {
     color: #ededed;
 }
 
 #contactMe {
-    margin: 2rem 10rem;
+    padding: 2rem 10rem 4rem;
+    background-color: white;
+    font-size: 0.9rem;
+}
+
+#contactMe p {
+    line-height: 1.7rem;
+    font-size: 0.9rem;
+}
+
+#contactMe h1 {
+    color: #4f6344;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 2rem;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+#contactMe h3 {
+    font-size: 1.2rem;
+}
+
+#contactMe h1, #contactMe h3, #contactMe p {
+    background-color: white;
+}
+
+#linkedIn {
+    margin: 1.7rem 0;
+    width: 16%;
+    border-radius: 1.5rem;
+}
+
+#linkedIn a {
+    display: block;
+    background-color: rgb(40, 40, 170);
+    border-radius: 1.5rem;
+    color: #ededed;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    padding: 1rem 2rem 1rem 2rem;
+}
+
+#linkedIn a:link {
+    color: #ededed;
+    text-decoration: none;
+}
+#linkedIn a:visited {
+    color: #ededed;
+}
+#linkedIn a:focus {
+    border: 1px solid rgb(70, 70, 70);
+}
+#linkedIn a:hover {
+    color: #b8b8b8;
+}
+#linkedIn a:active {
+    color: #ededed;
 }
 
 footer {
