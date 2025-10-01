@@ -2,19 +2,19 @@
 
 let currentYear = new Date().getFullYear();
 
-let img = document.querySelector("#placeholder");
-let images = document.querySelectorAll("span[data-image]");
+let image = document.querySelector("#placeholder");
+let listOfImages = document.querySelectorAll("span[data-image]");
 
-for (let image of images) {
-    image.onclick = function (e) {
+for (let currentImage of listOfImages) {
+    currentImage.onclick = function (e) {
         let imageSrc = e.target.dataset.image;
         document.querySelector("#description").innerHTML = `You are looking at ${e.target.innerHTML}.`;
         document.querySelector("#description").style.fontSize = "large";
-        img.src = `images/${imageSrc}`;
+        image.src = `assets/images/${imageSrc}`;
 
-        image.style.color = "black";
-        image.style.fontSize = "large";
-        image.style.textDecoration = "underline";
+        currentImage.style.color = "black";
+        currentImage.style.fontSize = "large";
+        currentImage.style.textDecoration = "underline";
     };
 }
 
