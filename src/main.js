@@ -3,18 +3,14 @@
 let currentYear = new Date().getFullYear();
 
 let image = document.querySelector("#placeholder");
-let listOfImages = document.querySelectorAll("span[data-image]");
+let listOfImages = document.querySelectorAll(".imagesInCarousel");
 
 for (let currentImage of listOfImages) {
     currentImage.onclick = function (e) {
-        let imageSrc = e.target.dataset.image;
-        document.querySelector("#description").innerHTML = `You are looking at ${e.target.innerHTML}.`;
-        document.querySelector("#description").style.fontSize = "large";
-        image.src = `assets/images/${imageSrc}`;
-
-        currentImage.style.color = "black";
-        currentImage.style.fontSize = "large";
-        currentImage.style.textDecoration = "underline";
+        let imageSrc = e.target.src;
+        // document.querySelector("#description").innerHTML = `You are looking at ${e.target.innerHTML}.`;
+        // document.querySelector("#description").style.fontSize = "large";
+        image.src = imageSrc;
     };
 }
 

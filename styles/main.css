@@ -201,12 +201,17 @@ h3 {
     align-items: center;
 }
 
-span[data-image] {
+.imagesInCarousel {
     cursor: pointer;
 }
 
 #placeholder {
     max-width: 80%;
+}
+
+#imageList{
+    display: flex;
+    align-items: center;
 }
 
 #gamesPortfolio {
