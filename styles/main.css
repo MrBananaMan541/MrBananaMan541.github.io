@@ -194,9 +194,24 @@ h3 {
     letter-spacing: 2px;
 }
 
+#imageDisplay {
+    display: flex;
+    align-items: center;
+    background-color: #4f6344;
+}
+
+#prev, #next {
+    padding: 1rem;
+    border-radius: 1rem;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
 #mainImage {
     display: flex;
     align-items: center;
+    background-color: #4f6344;
+    margin: 0 4rem 3rem 4rem;
 }
 
 #imageWrapper {
@@ -215,7 +230,9 @@ h3 {
 }
 
 #placeholder {
-    max-width: 80%;
+    max-width: 1440px;
+    background-color: #4f6344;
+    box-shadow: black 5px 5px;
 }
 
 #imageList{
