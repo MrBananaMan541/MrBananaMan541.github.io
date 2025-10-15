@@ -140,12 +140,6 @@ a {
     margin: 3rem 7rem;
 }
 
-#aboutMe h1 {
-    color: #4f6344;
-    text-align: center;
-    font-weight: bold;
-}
-
 #aboutMeText {
     display: flex;
     align-items: center;
@@ -153,13 +147,21 @@ a {
 }
 
 #aboutMe h1 {
-    font-size: xx-large;
+    color: #4f6344;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
     margin: 1rem;
 }
 
 .skills {
     margin: 1rem;
     color: rgb(70, 70, 70);
+}
+
+#rit {
+    max-width: 90%;
+    padding: 3rem 0;
 }
 
 #cSharp {
@@ -351,6 +353,15 @@ h3 {
 
 .cc0Resources:visited {
     color: blue;
+}
+
+.cc0Resources:active {
+    color: red;
+}
+
+#contactMe h4 {
+    background-color: white;
+    font-size: 1.1rem;
 }
 
 #contactMe h1, #contactMe h3, #contactMe p {
