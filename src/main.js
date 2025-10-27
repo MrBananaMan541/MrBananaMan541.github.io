@@ -11,9 +11,6 @@ let currentSelectedImage = document.querySelector(".imagesInCarousel");
 let prevCarouselButton = document.querySelector("#prev");
 let nextCarouselButton = document.querySelector("#next");
 
-//Deltatime to control the carousel rotating automatically
-let dt = 0;
-
 //Sets up the functionality to click on each image
 for (let currentImage of shownImages) {
     currentImage.onclick = e => nextCarouselImage(e.target);
@@ -30,26 +27,21 @@ function nextCarouselImage(newImage) {
 }
 
 function carouselLoop() {
-    //Calculate "delta time"
-    dt += 0.001;
+    for (let i = 0; i < 1000; i++) {
 
-    //If 5 seconds have passed, then move to the next image
-    if (dt >= 1)  {
-        //Reset deltatime
-        dt = 0;
-
-        //If the current image is the last one, and the next one is null, loop back to the first one
-        if(currentSelectedImage.nextElementSibling == null) {
-            nextCarouselImage(document.querySelector(".imagesInCarousel"));
+        if (i == 999) {
+            //If the current image is the last one, and the next one is null, loop back to the first one
+            if(currentSelectedImage.nextElementSibling == null) {
+                nextCarouselImage(document.querySelector(".imagesInCarousel"));
+            }
+            //Otherwise continue to the next image
+            else {
+                nextCarouselImage(currentSelectedImage.nextElementSibling);
+            }
+            
+            carouselLoop();
         }
-        //Otherwise continue to the next image
-        else {
-            nextCarouselImage(currentSelectedImage.nextElementSibling);
-        }
-    };
-
-    console.log(dt);
-    carouselLoop();
+    }
 }
 
 export const init = () => {
@@ -75,7 +67,7 @@ export const init = () => {
         //Otherwise continue to the next image
         else {
             nextCarouselImage(currentSelectedImage.nextElementSibling);
-        }
+    ``    }
     });
 
     //Commented out for now as the timing is way off and results in a stack overflow
