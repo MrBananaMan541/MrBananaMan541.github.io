@@ -8,6 +8,9 @@ let image = document.querySelector("#placeholder");
 let shownImages = document.querySelectorAll(".imagesInCarousel");
 let currentSelectedImage = document.querySelector(".imagesInCarousel");
 
+//Reference to the image text below the main carousel image
+let carouselImageText = document.querySelector("#carouselImageText");
+
 let prevCarouselButton = document.querySelector("#prev");
 let nextCarouselButton = document.querySelector("#next");
 
@@ -24,6 +27,7 @@ function nextCarouselImage(newImage) {
     //Update the current selected image to the new one that was clicked, and highlight it
     currentSelectedImage = newImage;
     currentSelectedImage.src = `${String(newImage.src).split(".png")[0]}-Selected.png`;
+    carouselImageText.innerHTML = newImage.alt;
 }
 
 function carouselLoop() {

@@ -212,6 +212,7 @@ h3 {
     font-weight: bold;
     font-size: 2rem;
     cursor: pointer;
+    box-shadow: black 0 0 5px 1px;
 }
 
 #mainImage {
@@ -239,7 +240,17 @@ h3 {
 #placeholder {
     max-width: 1080px;
     background-color: #4f6344;
-    box-shadow: black 5px 5px;
+    box-shadow: black 5px 5px 10px 5px;
+}
+
+#carouselImageText {
+    max-width: 900px;
+    background-color: #425339;
+    color: #ededed;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top: 2rem;
+    box-shadow: black 0 0 10px 1px;
 }
 
 #imageList{
