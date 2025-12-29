@@ -196,7 +196,7 @@ footer {
 body {
     background-color: #ededed;
     display: grid;
-    grid-template-columns: 4.5vw 90vw 4.5vw;
+    grid-template-columns: 5vw 90vw auto;
     grid-template-rows: 20vh auto 15vh;
     grid-template-areas: 
         "header header header"

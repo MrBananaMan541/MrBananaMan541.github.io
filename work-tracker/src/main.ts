@@ -75,10 +75,10 @@ function addTodoItem(classGroupName: string, title: string, itemStatus: string, 
 
   //Display the number of items left to work on in the status bar
   if (todoItems.length == 1) {
-    status.innerHTML = ` There is ${todoItems.length} item left to work on`;
+    status.innerHTML = `There is ${todoItems.length} item left to work on`;
   }
   else {
-    status.innerHTML = ` There are ${todoItems.length} items left to work on`;
+    status.innerHTML = `There are ${todoItems.length} items left to work on`;
   }
 
   return newTodo;
@@ -281,16 +281,20 @@ function removeTodoItem(toDoItem: {}, htmlToDoItem: HTMLElement) {
 //Load in any previous items that still need to be worked on
 function loadSavedWorkItems(username: string) {
   const json = readFromLocalStorage(username, "workItems");
-  for (let i = 0; i < json.length; i++) {
-    //Loop through each work item and add it to the screen and the appropriate arrays
-    addNewItem(
-      json[i].classGroupName,
-      json[i].title,
-      json[i].status,
-      json[i].dueDate,
-      json[i].dueByTime
-    );
+  //Quick check to make sure that there are items in the users workItems that can be displayed
+  if (json) {
+    for (let i = 0; i < json.length; i++) {
+      //Loop through each work item and add it to the screen and the appropriate arrays
+      addNewItem(
+        json[i].classGroupName,
+        json[i].title,
+        json[i].status,
+        json[i].dueDate,
+        json[i].dueByTime
+      );
+    }
   }
+  
 }
 
 //Hide the sign in screen and load the main app
@@ -382,13 +386,23 @@ function deleteAccount() {
   currentUsername = "";
   currentPassword = "";
 
+  //Clear any and all info that may still be left in the main page
+  const workItemsList = document.querySelector("#workItems") as HTMLDivElement;
+  workItemsList.innerHTML = "";
+
   //Hide the main work tracker app
   classGroupName.hidden = true;
+  classGroupName.value = "";
   title.hidden = true;
+  title.value = "";
   dueDate.hidden = true;
+  dueDate.value = "";
   time.hidden = true;
+  time.value = "1";
   timeOfDay.hidden = true;
+  timeOfDay.value = "AM";
   status.hidden = true;
+  status.innerHTML = "There are no more things left to work on. Hell yeah!";
   const addItem = document.querySelector("#addItem") as HTMLInputElement;
   addItem.hidden = true;
   const deleteAccountButton = document.querySelector("#deleteUserButton") as HTMLInputElement;
@@ -397,14 +411,43 @@ function deleteAccount() {
   //Load in the sign in screen
   username.hidden = false;
   username.value = "";
+  currentUsername = "";
   password.hidden = false;
   password.value = "";
+  currentPassword = "";
   const signInButton = document.querySelector("#signInButton") as HTMLInputElement;
   signInButton.hidden = false;
   const createAccountButton = document.querySelector("#createAccountButton") as HTMLInputElement;
   createAccountButton.hidden = false;
   signInStatus.hidden = false;
-  signInStatus.innerHTML = "Sign in or create a new user sign in to access your saved work/homework";
+  signInStatus.innerHTML = "Sign in or create a new user sign in to access your saved work";
+}
+
+//Function to quickly check and make sure the user has entered fields
+function checkNewItemInputs(classGroupName: string, title: string, itemStatus: string, dueDate: string, timeDueBy: string) {
+  //Check to see if there the user forgot to add either a title for class/group, title for the work item, or a due date
+  if (classGroupName == "" || title == "" || dueDate == "") {
+    status.innerText = "ERROR: You have forgotten to add:";
+
+    //If the user forgot the class/group title, add it onto the status message
+    if (classGroupName == "") {
+      status.innerText += "\nA title for the class/group";
+    }
+    //If the user forgot the work item title, add it onto the status message
+    if (title == "") {
+      status.innerText += "\nA title for the work item";
+    }
+    //If the user forgot the due date, add it onto the status message
+    if (dueDate == "") {
+      status.innerText += "\nA due date for the work item";
+    }
+
+    status.innerText += "\n\nPlease enter the above information before creating a new item";
+  }
+  //Otherwise, continue to add the item
+  else {
+    addNewItem(classGroupName, title, itemStatus, dueDate, timeDueBy);
+  }
 }
 
 //Load in necessary functions for the program to use on start
@@ -414,7 +457,7 @@ function loadTracker() {
   currentPassword = "";
   
   const addItem = document.querySelector("#addItem") as HTMLInputElement;
-  addItem.addEventListener("click", (e: Event) => addNewItem(
+  addItem.addEventListener("click", (e: Event) => checkNewItemInputs(
     classGroupName.value,
     title.value,
     TodoStatus.todoTitle,
@@ -447,9 +490,6 @@ function loadTracker() {
   status.hidden = true;
   addItem.hidden = true;
   deleteAccountButton.hidden = true;
-  
-  //Commented out so the sign in screen can load first
-  //loadSavedWorkItems(username);
 }
 
 window.onload = () => { loadTracker(); };
