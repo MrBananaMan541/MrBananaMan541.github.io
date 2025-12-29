@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Work Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+</head>
+
+<body>
+    <header>
+        <h1>Work Tracker</h1>
+        <h3>Serves as a tracker for any work that a user might have, whether it be for school or a job</h3>
+    </header>
+
+    <div id="sidebar1"></div>
+    
+    <div id="main">
+        <div id="workContainer">
+            <div id="signIn">
+                <div id="signInInputs">
+                    <input type="text" id="username" placeholder="Username" autocomplete="off"></input>
+                    <input type="text" id="password" placeholder="Password" autocomplete="off"></input>
+                </div>
+                <div id="signInButtons">
+                    <button id="signInButton">Sign In</button>
+                    <button id="createAccountButton">Create Account</button>
+                </div>
+                <br>
+                <div id="signInStatus">
+                    Sign in or create a new user sign in to access your saved work/homework
+                </div>
+            </div>
+            <div id="newItem">
+                <div id="textFields">
+                    <input type="text" id="classGroupName" placeholder="Class/Group Name" autocomplete="off"></input>
+                    <input type="text" id="workItemName" placeholder="Work Item Name" autocomplete="off"></input>
+                    <input type="text" id="dueDate" placeholder="Due Date" autocomplete="off"></input>
+                </div>
+                <div id="timeAndConfirm">
+                    <select id="workTime">
+                        <option id="1">1</option>
+                        <option id="2">2</option>
+                        <option id="3">3</option>
+                        <option id="4">4</option>
+                        <option id="5">5</option>
+                        <option id="6">6</option>
+                        <option id="7">7</option>
+                        <option id="8">8</option>
+                        <option id="9">9</option>
+                        <option id="10">10</option>
+                        <option id="11">11</option>
+                        <option id="12">12</option>
+                    </select>
+                    <select id="timeOfDay">
+                        <option id="am">AM</option>
+                        <option id="pm">PM</option>
+                    </select>
+                    <button id="addItem">Add New Item</button>
+                </div>
+            </div>
+
+            <div id="status">
+                There are no more things left to work on. Hell yeah!
+            </div>
+            <div id="workItems">
+                
+            </div>
+            <button id="deleteUserButton">Delete User Account</button>
+        </div>
+    </div>
+    <div id="sidebar2"></div>
+
+    <footer>
+        <h2>Good luck! You got this!</h2>
+    </footer>
+
+    <script src="./dist/bundle.js"></script>
+</body>
+
+</html>

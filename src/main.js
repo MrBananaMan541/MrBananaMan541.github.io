@@ -19,6 +19,7 @@ for (let currentImage of shownImages) {
     currentImage.onclick = e => nextCarouselImage(e.target);
 }
 
+//Handles transitioning the image carousel to the next image given
 function nextCarouselImage(newImage) {
     //Set the current "selected" image back to its original state, so it is no longer highlighted
     currentSelectedImage.src = image.src;
@@ -30,22 +31,19 @@ function nextCarouselImage(newImage) {
     carouselImageText.innerHTML = newImage.alt;
 }
 
+//Handles automatically looping the image carousel
 function carouselLoop() {
-    for (let i = 0; i < 1000; i++) {
-
-        if (i == 999) {
-            //If the current image is the last one, and the next one is null, loop back to the first one
-            if(currentSelectedImage.nextElementSibling == null) {
-                nextCarouselImage(document.querySelector(".imagesInCarousel"));
-            }
-            //Otherwise continue to the next image
-            else {
-                nextCarouselImage(currentSelectedImage.nextElementSibling);
-            }
-            
-            carouselLoop();
-        }
+    //If the current image is the last one, and the next one is null, loop back to the first one
+    if(currentSelectedImage.nextElementSibling == null) {
+        nextCarouselImage(document.querySelector(".imagesInCarousel"));
     }
+    //Otherwise continue to the next image
+    else {
+        nextCarouselImage(currentSelectedImage.nextElementSibling);
+    }
+    
+    //Call this function again after 5 seconds to give the viewer time to look at the image before moving on to the next one
+    setTimeout(carouselLoop, 5000);
 }
 
 export const init = () => {
@@ -71,9 +69,9 @@ export const init = () => {
         //Otherwise continue to the next image
         else {
             nextCarouselImage(currentSelectedImage.nextElementSibling);
-    ``    }
+        }
     });
 
     //Commented out for now as the timing is way off and results in a stack overflow
-    //carouselLoop();
+    setTimeout(carouselLoop, 10000);
 };

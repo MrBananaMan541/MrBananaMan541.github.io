@@ -1,0 +1,219 @@
+* {
+    font-family: Quicksand;
+    margin: 0;
+}
+
+html {
+    scroll-behavior:smooth
+}
+
+header {
+    grid-area: header;
+    background-color: #ededed;
+    padding: 2rem;
+}
+
+#newItem, #signIn {
+    margin-bottom: 2rem;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#signInInputs, #signInButtons {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+#textFields, #timeAndConfirm {
+    display: flex;
+    align-items: center;
+}
+
+#addItem {
+    border-width: 0.15rem;
+    padding: 2%;
+    margin-left: 6rem;
+    background-color: #FFFFFF;
+}
+
+#signInButton, #createAccountButton, #deleteUserButton {
+    border-width: 0.15rem;
+    padding: 1%;
+    background-color: #FFFFFF;
+}
+
+#signInButton {
+    margin-left: 20px;
+}
+
+#createAccountButton {
+    margin-left: 26px;
+}
+
+#signInButton {
+    padding-left: 8%;
+    padding-right: 8%;
+}
+
+#deleteUserButton {
+    margin-bottom: 3.5rem;
+}
+
+#addItem:active, #signInButton:active, #deleteUserButton:active {
+    background-color: #ededed;
+}
+
+input, button, select, option {
+    border-radius: 1rem;
+    color: gray;
+    text-align: center;
+    font-size: 1rem;
+    margin: 0.25rem;
+}
+
+#classGroupName, #workItemName, #dueDate, #username, #password {
+    font-size: large;
+    padding: 1.2rem;
+    margin: 1rem;
+    border-width: 0.25rem;
+}
+
+#classGroupName {
+    margin-right: 1.5rem;
+}
+
+#workItemName {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+#dueDate {
+    margin-left: 1.5rem;
+}
+
+#workTime {
+    margin-left: 0.75rem;
+}
+
+#timeOfDay {
+    margin-right: 6rem;
+}
+
+#workItems h2 {
+    margin-left: 2rem;
+}
+
+.todoStatus, .todoStatus option {
+    color: black;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.todo, .inProgress, .done {
+    background-color: #d9d9d9;
+}
+
+.removeItem {
+    align-self: center;
+    background-color: white;
+    color: black;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+li {
+    background-color: #c0ddb0;
+    padding: 1.5rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    border-radius: 0.5rem;
+    width: fit-content;
+    margin: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+p {
+    font-weight: 600;
+}
+
+#workContainer {
+    background-color: #ededed;
+    grid-area: workContainer;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+
+#sidebar1 {
+    background-color: #425339;
+    grid-area: sidebar1;
+    border-top-right-radius: 2rem;
+}
+
+#sidebar2 {
+    background-color: #425339;
+    grid-area: sidebar2;
+    border-top-left-radius: 2rem;
+}
+
+#status {
+    background-color: #d9d9d9;
+    grid-area: status;
+    padding: 1em;
+    border-radius: 2rem;
+    width: fit-content;
+    margin-bottom: 5vh;
+}
+
+#workItems {
+    width: 80%;
+    padding: 1rem;
+}
+
+footer {
+    background-color: #425339;
+    color: #ededed;
+    padding: 2.5rem;
+    text-align: center;
+    grid-area: footer;
+}
+
+#main {
+    background-color: #425339;
+    grid-area: main;
+    min-height: 65vh;
+}
+
+body {
+    background-color: #ededed;
+    display: grid;
+    grid-template-columns: 4.5vw 90vw 4.5vw;
+    grid-template-rows: 20vh auto 15vh;
+    grid-template-areas: 
+        "header header header"
+        "sidebar1 main sidebar2"
+        "footer footer footer";
+}
+
+#main {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "workContainer";
+}
+
+#workContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

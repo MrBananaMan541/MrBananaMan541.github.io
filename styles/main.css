@@ -288,7 +288,7 @@ h3 {
     font-size: 1.2rem;
 }
 
-.githubLinks, #peacelandLink, #quothTheRavenLink {
+.githubLinks, #peacelandLink, #quothTheRavenLink, #workTrackerLink {
     background-color: black;
     margin: 1.7rem 0;
     width: 48%;
@@ -302,7 +302,7 @@ h3 {
     width: 34%;
 }
 
-.githubLinks a, #peacelandLink a, #quothTheRavenLink a {
+.githubLinks a, #peacelandLink a, #quothTheRavenLink a, #workTrackerLink a {
     display: block;
     background-color: black;
     color: #ededed;
@@ -311,20 +311,20 @@ h3 {
     padding: 1rem 2rem 1rem 2rem;
 }
 
-.githubLinks a:link, #peacelandLink a:link, #quothTheRavenLink a:link {
+.githubLinks a:link, #peacelandLink a:link, #quothTheRavenLink a:link, #workTrackerLink a:link {
     color: #ededed;
     text-decoration: none;
 }
-.githubLinks a:visited, #peacelandLink a:visited, #quothTheRavenLink a:visited {
+.githubLinks a:visited, #peacelandLink a:visited, #quothTheRavenLink a:visited, #workTrackerLink a:visited {
     color: #ededed;
 }
-.githubLinks a:focus, #peacelandLink a:focus, #quothTheRavenLink a:focus {
+.githubLinks a:focus, #peacelandLink a:focus, #quothTheRavenLink a:focus, #workTrackerLink a:focus {
     border: 1px solid rgb(70, 70, 70);
 }
-.githubLinks a:hover, #peacelandLink a:hover, #quothTheRavenLink a:hover {
+.githubLinks a:hover, #peacelandLink a:hover, #quothTheRavenLink a:hover, #workTrackerLink a:hover {
     color: #b8b8b8;
 }
-.githubLinks a:active, #peacelandLink a:active, #quothTheRavenLink a:active {
+.githubLinks a:active, #peacelandLink a:active, #quothTheRavenLink a:active, #workTrackerLink a:active {
     color: #ededed;
 }
 
