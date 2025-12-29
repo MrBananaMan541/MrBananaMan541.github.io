@@ -386,6 +386,11 @@ function deleteAccount() {
   currentUsername = "";
   currentPassword = "";
 
+  //Empty the arrays with the toDo items, the workItems selects, and the removeItem buttons
+  todoItems = [];
+  workItemsSelects = [];
+  removeItemButtons = [];
+
   //Clear any and all info that may still be left in the main page
   const workItemsList = document.querySelector("#workItems") as HTMLDivElement;
   workItemsList.innerHTML = "";
