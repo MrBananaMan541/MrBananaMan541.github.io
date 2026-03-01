@@ -1,0 +1,363 @@
+* {
+    font-size: 1.2rem;
+    font-family: Quicksand;
+    font-weight: 500;
+    background-color: #ededed;
+    margin: 0;
+    line-height: 1.4rem;
+    letter-spacing: 0.5px;
+}
+
+html {
+    scroll-behavior:smooth
+}
+
+a {
+    font-weight: 600;
+}
+
+#title {
+    grid-area: title;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: #425339;
+}
+
+#title, h1 {
+    line-height: 2.2rem;
+}
+
+h1 {
+    text-shadow: 1px 1px 1px grey;
+}
+
+#home-page {
+    grid-area: home-page;
+    text-align: center;
+    background-color: #425339;
+}
+
+#github {
+    grid-area: github;
+    text-align: center;
+    background-color: #425339;
+}
+
+#old-web-page {
+    grid-area: old-web-page;
+    text-align: center;
+    background-color: #425339;
+}
+
+#projects-menu {
+    display: grid;
+    grid-template-columns: 44vw 12vw 19vw 24vw;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "title home-page github old-web-page";
+    position: sticky;
+    top: 0;
+    background-color: #425339;
+    color: #ededed;
+    padding: 1.2rem;
+    padding-left: 0;
+    padding-right: 0;
+    letter-spacing: 2px;
+    z-index: 1;
+}
+
+#projects-menu div {
+    line-height: 2.2rem;
+}
+
+#projects-menu a {
+    background-color: #425339;
+}
+
+#projects-menu a:link {
+    color: #ededed;
+    text-decoration: none;
+}
+#projects-menu a:visited {
+    color: #ededed;
+}
+#projects-menu a:focus {
+    border: 1px solid black;
+}
+#projects-menu a:hover {
+    color: #b8b8b8;
+}
+#projects-menu a:active {
+    color: #ededed;
+}
+
+#gamesCarousel {
+    background-color: #4f6344;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#gamesCarousel h1, #audioProjects h1 {
+    color: #ededed;
+    background-color: #4f6344;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 1rem;
+    padding: 2rem 0;
+    letter-spacing: 2px;
+}
+
+#imageDisplay {
+    display: flex;
+    align-items: center;
+    background-color: #4f6344;
+}
+
+#prev, #next {
+    padding: 2rem 1.5rem;
+    margin-bottom: 10rem;
+    border-radius: 1rem;
+    font-weight: bold;
+    font-size: 2rem;
+    cursor: pointer;
+    box-shadow: black 0 0 5px 1px;
+}
+
+#mainImage {
+    display: flex;
+    align-items: center;
+    background-color: #4f6344;
+    margin: 0 4rem 3rem 4rem;
+}
+
+#imageWrapper {
+    background-color: #4f6344;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imagesInCarousel {
+    cursor: pointer;
+    background-color: #4f6344;
+    width: 8%;
+    padding: 5px 2.22% 5px 0;
+    display: block;
+}
+
+#placeholder {
+    max-height: 480px;
+    background-color: #4f6344;
+    box-shadow: black 5px 5px 10px 5px;
+}
+
+#carouselImageText {
+    max-width: 900px;
+    background-color: #425339;
+    color: #ededed;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top: 2rem;
+    box-shadow: black 0 0 10px 1px;
+}
+
+#imageList{
+    display: flex;
+    align-items: center;
+    background-color: #4f6344;
+    width: 85%;
+    padding-bottom: 3rem;
+}
+
+#gamesPortfolio {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#gamesPortfolio h1 {
+    color: #4f6344;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 4rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+#gameProjects {
+    max-width: 60%;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+    color: rgb(70, 70, 70);
+}
+
+.inline-left {
+    float: left;
+    margin-right: 15px;
+    max-height: 240px;
+}
+.inline-right {
+    float: right;
+    margin-left: 15px;
+    max-height: 240px;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+.githubLinks, #peacelandLink, #quothTheRavenLink, #workTrackerLink {
+    background-color: black;
+    margin: 1.7rem 0;
+    width: 42%;
+}
+
+#quothTheRavenLink {
+    width: 30%;
+}
+
+#workTrackerLink {
+    width: 42%;
+}
+
+#peacelandLink {
+    width: 43%
+}
+
+.githubLinks a, #peacelandLink a, #quothTheRavenLink a, #workTrackerLink a {
+    display: block;
+    background-color: black;
+    color: #ededed;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    padding: 1rem 2rem 1rem 2rem;
+}
+
+.githubLinks a:link, #peacelandLink a:link, #quothTheRavenLink a:link, #workTrackerLink a:link {
+    color: #ededed;
+    text-decoration: none;
+}
+.githubLinks a:visited, #peacelandLink a:visited, #quothTheRavenLink a:visited, #workTrackerLink a:visited {
+    color: #ededed;
+}
+.githubLinks a:focus, #peacelandLink a:focus, #quothTheRavenLink a:focus, #workTrackerLink a:focus {
+    border: 1px solid rgb(70, 70, 70);
+}
+.githubLinks a:hover, #peacelandLink a:hover, #quothTheRavenLink a:hover, #workTrackerLink a:hover {
+    color: #b8b8b8;
+}
+.githubLinks a:active, #peacelandLink a:active, #quothTheRavenLink a:active, #workTrackerLink a:active {
+    color: #ededed;
+}
+
+#audioProjects {
+    background-color: #4f6344;
+    color: #ededed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 5rem;
+}
+
+#audioProjects h1 {
+    padding-bottom: 0;
+}
+
+#audioProjects h3 {
+    background-color: #425339;
+    padding: 2rem 3rem;
+    border-radius: 0.25rem;
+}
+
+#audioProjects h4 {
+    background-color: #4f6344;
+    font-size: 1.25rem;
+    margin: 1rem;
+}
+
+#audioProjects p {
+    background-color: #4f6344;
+    width: 70%;
+    margin: 1rem 1rem 3rem 1rem;
+    font-size: 1rem;
+}
+
+#combatLoop, #combatLoop div, #cueScore, #cueScoreAudio div {
+    background-color: #4f6344;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#combatAllLayers {
+    grid-area: combatAllLayers;
+}
+#combatLayers1-2 {
+    grid-area: combatLayers1-2;
+}
+#combatLayers1-3 {
+    grid-area: combatLayers1-3;
+}
+#combatLayers2-3 {
+    grid-area: combatLayers2-3;
+}
+#combatMainBattle {
+    grid-area: combatMainBattle;
+}
+#combatLowPressure {
+    grid-area: combatLowPressure;
+}
+#combatBuildUp {
+    grid-area: combatBuildUp;
+}
+
+#combatLoop {
+    display: grid;
+    grid-template-columns: 25vw 25vw 25vw;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+        "combatAllLayers combatAllLayers combatAllLayers"
+        "combatLayers1-2 combatLayers1-3 combatLayers2-3"
+        "combatMainBattle combatLowPressure combatBuildUp";
+}
+
+#cueMissionIntro {
+    grid-area: cueMissionIntro;
+}
+#cueAdvanceToNextObjective {
+    grid-area: cueAdvanceToNextObjective;
+}
+#cueObjectiveSighted {
+    grid-area: cueObjectiveSighted;
+}
+#cueObjectiveCompleted {
+    grid-area: cueObjectiveCompleted;
+}
+
+#cueScoreAudio {
+    background-color: #4f6344;
+    display: grid;
+    grid-template-columns: 30vw 30vw;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+        "cueMissionIntro cueAdvanceToNextObjective"
+        "cueObjectiveSighted cueObjectiveCompleted";
+}
+
+#audioProjects audio {
+    border-radius: 1rem;
+    box-shadow: black 0 2px 5px 0;
+    margin-top: 1rem;
+}
+
+#audioProjects video {
+    box-shadow: black 0 5px 20px 5px;
+}
