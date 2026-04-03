@@ -144,7 +144,8 @@ h1 {
     cursor: pointer;
     background-color: #4f6344;
     width: 8%;
-    padding: 5px 2.22% 5px 0;
+    /* padding: 5px 1.11% 5px 1.11%; */ /*Spacing used for when there's ten images, so they appear perfectly centered*/
+    padding: 5px 2.25%; /*Spacing used for when there's eight images, so they appear perfectly centered*/
     display: block;
 }
 
@@ -172,14 +173,14 @@ h1 {
     padding-bottom: 3rem;
 }
 
-#gamesPortfolio {
+#gamesPortfolio, #workExperience {
     margin: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#gamesPortfolio h1 {
+#gamesPortfolio h1, #workExperience h1 {
     color: #4f6344;
     font-size: 2rem;
     font-weight: bold;
@@ -189,7 +190,7 @@ h1 {
     letter-spacing: 2px;
 }
 
-#gameProjects {
+#gameProjects, #workProjects {
     max-width: 60%;
     font-size: 0.9rem;
     line-height: 1.5rem;
