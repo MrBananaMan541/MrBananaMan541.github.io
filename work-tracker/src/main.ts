@@ -47,13 +47,19 @@ let time = document.querySelector("#workTime") as HTMLSelectElement;
 let timeOfDay = document.querySelector("#timeOfDay") as HTMLSelectElement;
 let status = document.querySelector("#status") as HTMLDivElement;
 
+//Reference to the work items area, to help with hiding and revealing it
+let workItems = document.querySelector("#workItems") as HTMLDivElement;
+
+//References to the delete secondary confirmation status
+let deleteStatus = document.querySelector("#deleteStatus") as HTMLDivElement;
+
 //List of all todoItems to keep track of what is left, and then save to local storage
-let todoItems = [];
+let todoItems: WorkItem[] = [];
 
 //List of options from each select element from each work item
-let workItemsSelects = [];
+let workItemsSelects: HTMLSelectElement[] = [];
 //List of buttons in each work item that will appear when the work item is considered 'Done'
-let removeItemButtons = [];
+let removeItemButtons: HTMLButtonElement[] = [];
 
 //Add the new work item to a list to save in a separate file
 function addTodoItem(classGroupName: string, title: string, itemStatus: string, dueDate: string, timeDueBy: string): WorkItem {
@@ -123,14 +129,19 @@ function formatClassGroupTitles(classGroupName: string, title: string): string[]
 }
 
 //Adds a new work item to the page
-function addNewItem(classGroupName: string, title: string, itemStatus: string, dueDate: string, timeDueBy: string) {
+function addNewItem(groupName: string, itemTitle: string, itemStatus: string, itemDueDate: string, timeDueBy: string) {
   //Add the new item to the todoItems array and save it in a local variable
-  let tempToDoItem = addTodoItem(classGroupName, title, itemStatus, dueDate, timeDueBy);
+  let tempToDoItem = addTodoItem(groupName, itemTitle, itemStatus, itemDueDate, timeDueBy);
 
   //Format the names and save them to a temp array
-  let formattedTitles: string[] = formatClassGroupTitles(classGroupName, title);
+  let formattedTitles: string[] = formatClassGroupTitles(groupName, itemTitle);
   
   let newListItem;
+
+  //If the workItems area is hidden for whatever reason, then reveal it
+  if (workItems.hidden == true) {
+    workItems.hidden = false;
+  }
 
   //Create the select element to help detect when the user selects that the work item is completed,
   //and then reveal the remove button
@@ -165,8 +176,8 @@ function addNewItem(classGroupName: string, title: string, itemStatus: string, d
     newListItem.id = `${formattedTitles[1]}`;
     newListItem.innerHTML = 
     '<h3>' + 
-      `<p>${title}</p>` +
-      `<p> Due By: ${dueDate}, ${timeDueBy} </p>` +
+      `<p>${itemTitle}</p>` +
+      `<p> Due By: ${itemDueDate}, ${timeDueBy} </p>` +
       '<p>' + 
         'Progress: ' +
       '</p>' +
@@ -183,12 +194,12 @@ function addNewItem(classGroupName: string, title: string, itemStatus: string, d
 
     //Create the work item to display to the screen
     newListItem.innerHTML = 
-      `<h2>${classGroupName}</h2>` +
+      `<h2>${groupName}</h2>` +
       `<ul id=${formattedTitles[0]}List>` +
         `<li id=${formattedTitles[1]}>` +
           '<h3>' + 
-            `<p>${title}</p>` +
-            `<p> Due By: ${dueDate}, ${timeDueBy} </p>` +
+            `<p>${itemTitle}</p>` +
+            `<p> Due By: ${itemDueDate}, ${timeDueBy} </p>` +
             '<p>' + 
               'Progress: ' +
             '</p>' +
@@ -202,14 +213,15 @@ function addNewItem(classGroupName: string, title: string, itemStatus: string, d
 
   //Add the removeTodoItemItem function to the removeButton
   removeButton.addEventListener('click', (e: Event) => removeTodoItem(
+    removeButton,
     tempToDoItem,
-    newListItem.querySelector("h3").parentElement
+    newListItem.querySelector("h3")!.parentElement!
   ));
 
   //Add the hideAndRevealRemoveButton function to the select list
   select.addEventListener('change', (e: Event) => hideAndRevealRemoveButton(
     tempToDoItem,
-    e.target,
+    e.target as HTMLSelectElement,
     removeButton
   ));
 
@@ -220,10 +232,17 @@ function addNewItem(classGroupName: string, title: string, itemStatus: string, d
   //Add the remove button to the work item and push it to the removeItemButtons Array
   newListItem.querySelector("h3")?.appendChild(removeButton);
   removeItemButtons.push(removeButton);
+
+  //Clear all the fields so the user can input a fresh new item if they want to
+  classGroupName.value = "";
+  title.value = "";
+  dueDate.value = "";
+  time.value = "12";
+  timeOfDay.value = "AM";
 }
 
 //Either hides or reveals the remove button on each work item, button on what option is chosen
-function hideAndRevealRemoveButton(toDoItem: {}, option, removeButton: HTMLButtonElement) {
+function hideAndRevealRemoveButton(toDoItem: WorkItem, option: HTMLSelectElement, removeButton: HTMLButtonElement) {
   //If the user selects done, then reveal the remove button for this work item
   if (option.value == "done") {
     removeButton.hidden = false;
@@ -241,23 +260,23 @@ function hideAndRevealRemoveButton(toDoItem: {}, option, removeButton: HTMLButto
 }
 
 //Removes the given work item from the screen, the todoItems array, and external storage
-function removeTodoItem(toDoItem: {}, htmlToDoItem: HTMLElement) {
+function removeTodoItem(thisRemoveButton: HTMLButtonElement, toDoItem: WorkItem, htmlToDoItem: HTMLElement) {
   //Remove the toDoItem from the array
   todoItems.splice(todoItems.indexOf(toDoItem), 1);
 
   //Remove the event listener for the select, and then remove it from the workItemsSelect array
-  workItemsSelects[workItemsSelects.indexOf(htmlToDoItem.querySelector('select'))].removeEventListener(
+  workItemsSelects[workItemsSelects.indexOf(htmlToDoItem.querySelector('select')!)].removeEventListener(
     'change', 
     (e: Event) => hideAndRevealRemoveButton
   );
-  workItemsSelects.splice(workItemsSelects.indexOf(htmlToDoItem.querySelector('select')), 1);
+  workItemsSelects.splice(workItemsSelects.indexOf(htmlToDoItem.querySelector('select')!), 1);
 
   //Remove the toDoItem from localStorage be overriding the previous workItems
   writeToLocalStorage(currentUsername, "workItems", todoItems);
 
   //If this is the last todo item for this class/group, remove the class/group entirely
-  if (htmlToDoItem.parentElement.childElementCount == 1) {
-    htmlToDoItem.parentElement.parentElement.remove();
+  if (htmlToDoItem.parentElement!.childElementCount == 1) {
+    htmlToDoItem.parentElement!.parentElement!.remove();
   }
   //Otherwise, remove the item from the page
   else {
@@ -275,7 +294,7 @@ function removeTodoItem(toDoItem: {}, htmlToDoItem: HTMLElement) {
   }
 
   //Finally remove the removeButton from the button array
-  removeItemButtons.splice(removeItemButtons.indexOf(this), 1);
+  removeItemButtons.splice(removeItemButtons.indexOf(thisRemoveButton), 1);
 }
 
 //Load in any previous items that still need to be worked on
@@ -379,6 +398,59 @@ function createAccount(username: string, password: string, signInButton: HTMLInp
   }
 }
 
+//Simple function that reveals the secondary confirmation area for deleting the user's account and can also hide it
+function isUserDeletingAccount(isDeleting: boolean) {
+  const addItem = document.querySelector("#addItem") as HTMLInputElement;
+  const deleteAccountButton = document.querySelector("#deleteUserButton") as HTMLInputElement;
+  const deleteConfirmButton = document.querySelector("#deleteConfirmButton") as HTMLInputElement;
+  const dontDeleteButton = document.querySelector("#dontDeleteButton") as HTMLInputElement;
+  
+  //If the user first clicked the delete button, show the secondary confirmation delete buttons
+  if (isDeleting) {
+    //Load the secondary delete confirmation area
+    deleteStatus.hidden = false;
+    deleteConfirmButton.hidden = false;
+    dontDeleteButton.hidden = false;
+
+    //Hide the main work tracker app
+    classGroupName.hidden = true;
+    title.hidden = true;
+    dueDate.hidden = true;
+    time.hidden = true;
+    timeOfDay.hidden = true;
+    status.hidden = true;
+    addItem.hidden = true;
+    deleteAccountButton.hidden = true;
+    status.hidden = true;
+    //If there are work items to hide, then do so
+    if (workItems.innerHTML != "") {
+      workItems.hidden = true;
+    }
+  }
+  //Otherwise, they don't want to delete their account and want to return to their work items
+  else {
+    //Hide the secondary delete confirmation area
+    deleteStatus.hidden = true;
+    deleteConfirmButton.hidden = true;
+    dontDeleteButton.hidden = true;
+
+    //Load in the main work tracker app
+    classGroupName.hidden = false;
+    title.hidden = false;
+    dueDate.hidden = false;
+    time.hidden = false;
+    timeOfDay.hidden = false;
+    status.hidden = false;
+    addItem.hidden = false;
+    deleteAccountButton.hidden = false;
+    status.hidden = false;
+    //If there were work items that were hidden, reveal them
+    if (workItems.innerHTML != "") {
+      workItems.hidden = false;
+    }
+  }
+}
+
 //Simple function that deletes the users account, hides the main app screen, and reveals the user sign in screen again
 function deleteAccount() {
   //Delete the users information in local storage, and empty the currentUsername and currentPassword
@@ -403,7 +475,7 @@ function deleteAccount() {
   dueDate.hidden = true;
   dueDate.value = "";
   time.hidden = true;
-  time.value = "1";
+  time.value = "12";
   timeOfDay.hidden = true;
   timeOfDay.value = "AM";
   status.hidden = true;
@@ -412,6 +484,11 @@ function deleteAccount() {
   addItem.hidden = true;
   const deleteAccountButton = document.querySelector("#deleteUserButton") as HTMLInputElement;
   deleteAccountButton.hidden = true;
+  deleteStatus.hidden = true;
+  const deleteConfirmButton = document.querySelector("#deleteConfirmButton") as HTMLInputElement;
+  deleteConfirmButton.hidden = true;
+  const dontDeleteButton = document.querySelector("#dontDeleteButton") as HTMLInputElement;
+  dontDeleteButton.hidden = true;
 
   //Load in the sign in screen
   username.hidden = false;
@@ -485,7 +562,13 @@ function loadTracker() {
   ));
 
   const deleteAccountButton = document.querySelector("#deleteUserButton") as HTMLInputElement;
-  deleteAccountButton.addEventListener("click", (e: Event) => deleteAccount());
+  deleteAccountButton.addEventListener("click", (e: Event) => isUserDeletingAccount(true));
+
+  const deleteConfirmButton = document.querySelector("#deleteConfirmButton") as HTMLInputElement;
+  deleteConfirmButton.addEventListener("click", (e: Event) => deleteAccount());
+
+  const dontDeleteButton = document.querySelector("#dontDeleteButton") as HTMLInputElement;
+  dontDeleteButton.addEventListener("click", (e: Event) => isUserDeletingAccount(false));
 
   classGroupName.hidden = true;
   title.hidden = true;
@@ -495,6 +578,9 @@ function loadTracker() {
   status.hidden = true;
   addItem.hidden = true;
   deleteAccountButton.hidden = true;
+  deleteStatus.hidden = true;
+  deleteConfirmButton.hidden = true;
+  dontDeleteButton.hidden = true;
 }
 
 window.onload = () => { loadTracker(); };

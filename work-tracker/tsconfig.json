@@ -1,9 +1,10 @@
 {
     "compilerOptions": {
-        "target": "ES5",
+        //"target": "ES5", //This is deprecated and will stop/stopped functioning in Typescript 7.0
         "module": "ES6",
         "sourceMap": true,
         "allowJs": true,
+        "rootDir": "./src",
         "outDir": "./dist"
     },
     "include": ["src/**/*"]
