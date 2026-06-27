@@ -15,6 +15,7 @@ type WorkItem = {
   id: number,
   classGroupName: string,
   title: string,
+  description: string,
   status: string,
   dueDate: string,
   dueByTime: string,
@@ -33,6 +34,7 @@ enum TodoStatus {
 //References to input fields and status bar for signing into a users "account"
 let username = document.querySelector("#username") as HTMLInputElement;
 let password = document.querySelector("#password") as HTMLInputElement;
+let passwordCheckboxLabel = document.querySelector("#passwordCheckboxLabel") as HTMLLabelElement;
 let signInStatus = document.querySelector("#signInStatus") as HTMLDivElement;
 
 //Current username and password that are saved while the user is using this page
@@ -43,6 +45,7 @@ let currentPassword = "";
 let classGroupName = document.querySelector("#classGroupName") as HTMLInputElement;
 let title = document.querySelector("#workItemName") as HTMLInputElement;
 let dueDate = document.querySelector("#dueDate") as HTMLInputElement;
+let descriptionField = document.querySelector("#descriptionField") as HTMLInputElement;
 let time = document.querySelector("#workTime") as HTMLSelectElement;
 let timeOfDay = document.querySelector("#timeOfDay") as HTMLSelectElement;
 let status = document.querySelector("#status") as HTMLDivElement;
@@ -62,7 +65,7 @@ let workItemsSelects: HTMLSelectElement[] = [];
 let removeItemButtons: HTMLButtonElement[] = [];
 
 //Add the new work item to a list to save in a separate file
-function addTodoItem(classGroupName: string, title: string, itemStatus: string, dueDate: string, timeDueBy: string): WorkItem {
+function addTodoItem(classGroupName: string, title: string, description: string, itemStatus: string, dueDate: string, timeDueBy: string): WorkItem {
   const id = getNextId(todoItems);
 
   //Create temp object to then add to the todoItems list
@@ -70,6 +73,7 @@ function addTodoItem(classGroupName: string, title: string, itemStatus: string, 
     id,
     classGroupName: classGroupName,
     title: title,
+    description: description,
     status: itemStatus,
     dueDate: dueDate,
     dueByTime: timeDueBy
@@ -129,9 +133,9 @@ function formatClassGroupTitles(classGroupName: string, title: string): string[]
 }
 
 //Adds a new work item to the page
-function addNewItem(groupName: string, itemTitle: string, itemStatus: string, itemDueDate: string, timeDueBy: string) {
+function addNewItem(groupName: string, itemTitle: string, description: string, itemStatus: string, itemDueDate: string, timeDueBy: string) {
   //Add the new item to the todoItems array and save it in a local variable
-  let tempToDoItem = addTodoItem(groupName, itemTitle, itemStatus, itemDueDate, timeDueBy);
+  let tempToDoItem = addTodoItem(groupName, itemTitle, description, itemStatus, itemDueDate, timeDueBy);
 
   //Format the names and save them to a temp array
   let formattedTitles: string[] = formatClassGroupTitles(groupName, itemTitle);
@@ -174,14 +178,30 @@ function addNewItem(groupName: string, itemTitle: string, itemStatus: string, it
     //Create the new assignment and pass in the requried data
     newListItem = document.createElement("li");
     newListItem.id = `${formattedTitles[1]}`;
-    newListItem.innerHTML = 
-    '<h3>' + 
-      `<p>${itemTitle}</p>` +
-      `<p> Due By: ${itemDueDate}, ${timeDueBy} </p>` +
-      '<p>' + 
-        'Progress: ' +
-      '</p>' +
-    '</h3>';
+
+    //If the user did not enter a description for their work item, create a work item without a description field
+    if (description == "") {
+      newListItem.innerHTML = 
+      '<h3>' + 
+        `<p class="workItemTitle">${itemTitle}</p>` +
+        `<p> Due By: ${itemDueDate}, ${timeDueBy} </p>` +
+        '<p>' + 
+          'Progress: ' +
+        '</p>' +
+      '</h3>';
+    }
+    //Otherwise create a work item with a description
+    else {
+      newListItem.innerHTML = 
+      '<h3>' + 
+        `<p class="workItemTitle">${itemTitle}</p>` +
+        `<p class="workItemDescription">${description}</p>` +
+        `<p> Due By: ${itemDueDate}, ${timeDueBy} </p>` +
+        '<p>' + 
+          'Progress: ' +
+        '</p>' +
+      '</h3>';
+    }
     
     //Add the new item to the same class/group list
     document.querySelector(`#${formattedTitles[0]}List`)?.appendChild(newListItem);
@@ -193,12 +213,14 @@ function addNewItem(groupName: string, itemTitle: string, itemStatus: string, it
     newListItem.id = formattedTitles[0];
 
     //Create the work item to display to the screen
-    newListItem.innerHTML = 
+    //If the user did not enter a description for their work item, create a work item without a description field
+    if (description == "") {
+      newListItem.innerHTML = 
       `<h2>${groupName}</h2>` +
       `<ul id=${formattedTitles[0]}List>` +
         `<li id=${formattedTitles[1]}>` +
           '<h3>' + 
-            `<p>${itemTitle}</p>` +
+            `<p class="workItemTitle">${itemTitle}</p>` +
             `<p> Due By: ${itemDueDate}, ${timeDueBy} </p>` +
             '<p>' + 
               'Progress: ' +
@@ -206,6 +228,24 @@ function addNewItem(groupName: string, itemTitle: string, itemStatus: string, it
           '</h3>'
         '</li>'
       '</ul';
+    }
+    //Otherwise create a work item with a description
+    else {
+      newListItem.innerHTML = 
+      `<h2>${groupName}</h2>` +
+      `<ul id=${formattedTitles[0]}List>` +
+        `<li id=${formattedTitles[1]}>` +
+          '<h3>' + 
+            `<p class="workItemTitle">${itemTitle}</p>` +
+            `<p class="workItemDescription">${description}</p>` +
+            `<p> Due By: ${itemDueDate}, ${timeDueBy} </p>` +
+            '<p>' + 
+              'Progress: ' +
+            '</p>' +
+          '</h3>'
+        '</li>'
+      '</ul';
+    }
     
     //Append the new work item to the screen
     document.querySelector("#workItems")?.appendChild(newListItem);
@@ -237,6 +277,7 @@ function addNewItem(groupName: string, itemTitle: string, itemStatus: string, it
   classGroupName.value = "";
   title.value = "";
   dueDate.value = "";
+  descriptionField.value = "";
   time.value = "12";
   timeOfDay.value = "AM";
 }
@@ -307,6 +348,7 @@ function loadSavedWorkItems(username: string) {
       addNewItem(
         json[i].classGroupName,
         json[i].title,
+        json[i].description,
         json[i].status,
         json[i].dueDate,
         json[i].dueByTime
@@ -321,6 +363,9 @@ function loadWorkTracker(currentUsername: string) {
   //Hide the sign in screen
   username.hidden = true;
   password.hidden = true;
+  const passwordCheckbox = document.querySelector("#passwordCheckbox") as HTMLInputElement;
+  passwordCheckbox.hidden = true;
+  passwordCheckboxLabel.hidden = true;
   const signInButton = document.querySelector("#signInButton") as HTMLInputElement;
   signInButton.hidden = true;
   const createAccountButton = document.querySelector("#createAccountButton") as HTMLInputElement;
@@ -331,6 +376,7 @@ function loadWorkTracker(currentUsername: string) {
   classGroupName.hidden = false;
   title.hidden = false;
   dueDate.hidden = false;
+  descriptionField.hidden = false;
   time.hidden = false;
   timeOfDay.hidden = false;
   status.hidden = false;
@@ -416,6 +462,7 @@ function isUserDeletingAccount(isDeleting: boolean) {
     classGroupName.hidden = true;
     title.hidden = true;
     dueDate.hidden = true;
+    descriptionField.hidden = true;
     time.hidden = true;
     timeOfDay.hidden = true;
     status.hidden = true;
@@ -438,6 +485,7 @@ function isUserDeletingAccount(isDeleting: boolean) {
     classGroupName.hidden = false;
     title.hidden = false;
     dueDate.hidden = false;
+    descriptionField.hidden = false;
     time.hidden = false;
     timeOfDay.hidden = false;
     status.hidden = false;
@@ -474,6 +522,8 @@ function deleteAccount() {
   title.value = "";
   dueDate.hidden = true;
   dueDate.value = "";
+  descriptionField.hidden = true;
+  descriptionField.value = "";
   time.hidden = true;
   time.value = "12";
   timeOfDay.hidden = true;
@@ -497,6 +547,11 @@ function deleteAccount() {
   password.hidden = false;
   password.value = "";
   currentPassword = "";
+  const passwordCheckbox = document.querySelector("#passwordCheckbox") as HTMLInputElement;
+  passwordCheckbox.hidden = false;
+  passwordCheckbox.checked = false;
+  password.type = "password";
+  passwordCheckboxLabel.hidden = false;
   const signInButton = document.querySelector("#signInButton") as HTMLInputElement;
   signInButton.hidden = false;
   const createAccountButton = document.querySelector("#createAccountButton") as HTMLInputElement;
@@ -506,7 +561,7 @@ function deleteAccount() {
 }
 
 //Function to quickly check and make sure the user has entered fields
-function checkNewItemInputs(classGroupName: string, title: string, itemStatus: string, dueDate: string, timeDueBy: string) {
+function checkNewItemInputs(classGroupName: string, title: string, description: string, itemStatus: string, dueDate: string, timeDueBy: string) {
   //Check to see if there the user forgot to add either a title for class/group, title for the work item, or a due date
   if (classGroupName == "" || title == "" || dueDate == "") {
     status.innerText = "ERROR: You have forgotten to add:";
@@ -528,7 +583,7 @@ function checkNewItemInputs(classGroupName: string, title: string, itemStatus: s
   }
   //Otherwise, continue to add the item
   else {
-    addNewItem(classGroupName, title, itemStatus, dueDate, timeDueBy);
+    addNewItem(classGroupName, title, description, itemStatus, dueDate, timeDueBy);
   }
 }
 
@@ -542,10 +597,21 @@ function loadTracker() {
   addItem.addEventListener("click", (e: Event) => checkNewItemInputs(
     classGroupName.value,
     title.value,
+    descriptionField.value,
     TodoStatus.todoTitle,
     dueDate.value,
     `${time.value}${timeOfDay.value}`
   ));
+
+  const passwordCheckbox = document.querySelector("#passwordCheckbox") as HTMLInputElement;
+  passwordCheckbox.addEventListener("change", ()=>{
+    if (passwordCheckbox.checked) {
+      password.type = "text";
+    }
+    else {
+      password.type = "password";
+    }
+  });
 
   const signInButton = document.querySelector("#signInButton") as HTMLInputElement;
   signInButton.addEventListener("click", (e: Event) => signIn(
@@ -573,6 +639,7 @@ function loadTracker() {
   classGroupName.hidden = true;
   title.hidden = true;
   dueDate.hidden = true;
+  descriptionField.hidden = true;
   time.hidden = true;
   timeOfDay.hidden = true;
   status.hidden = true;

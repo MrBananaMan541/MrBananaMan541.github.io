@@ -21,6 +21,10 @@ header {
     align-items: center;
 }
 
+#signInStatus {
+    margin-top: 2rem;
+}
+
 #signInInputs, #signInButtons, #deleteButtons {
     width: fit-content;
     display: flex;
@@ -45,9 +49,9 @@ header {
     background-color: #FFFFFF;
 }
 
-#signInButton {
-    margin-left: 20px;
-}
+/* #signInButton {
+    margin-left: 0.1vw;
+} */
 
 #deleteStatus {
     margin-bottom: 1rem;
@@ -77,9 +81,15 @@ header {
     margin-bottom: 2.5rem;
 }
 
+#addItem:hover, #addItem:focus, #signInButton:hover, #signInButton:focus, #createAccountButton:hover, 
+#createAccountButton:focus, #deleteUserButton:hover, #deleteUserButton:focus, #deleteConfirmButton:hover, 
+#deleteConfirmButton:focus, #dontDeleteButton:hover, #dontDeleteButton:focus {
+    background-color: #ededed;
+}
+
 #addItem:active, #signInButton:active, #createAccountButton:active, #deleteUserButton:active, 
 #deleteConfirmButton:active, #dontDeleteButton:active {
-    background-color: #ededed;
+    background-color: #c9c9c9;
 }
 
 input, button, select, option {
@@ -90,11 +100,23 @@ input, button, select, option {
     margin: 0.25rem;
 }
 
-#classGroupName, #workItemName, #dueDate, #username, #password {
+#classGroupName, #workItemName, #dueDate, #descriptionField, #username, #password {
     font-size: large;
     padding: 1.2rem;
     margin: 1rem;
     border-width: 0.25rem;
+}
+
+#username {
+    margin-left: 11vw;
+}
+
+#passwordCheckbox {
+    margin: 10px;
+}
+
+#passwordCheckboxLabel {
+    font-size: large;
 }
 
 #classGroupName {
@@ -108,6 +130,26 @@ input, button, select, option {
 
 #dueDate {
     margin-left: 1.5rem;
+}
+
+#descriptionField {
+    padding: 2rem;
+    text-align: left;
+    width: 70%;
+}
+
+.workItemDescription {
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: 0.1rem solid black;
+    border-radius: 5px;
+    background-color: #ededed;
+    overflow-wrap: break-word;
+    font-weight: 500;
+}
+
+.workItemTitle {
+    overflow-wrap: break-word;
 }
 
 #workTime {
@@ -148,9 +190,9 @@ ul {
 
 li {
     background-color: #c0ddb0;
-    padding: 1.5rem;
-    padding-left: 4rem;
-    padding-right: 4rem;
+    padding: 1.5rem 4rem;
+    max-width: 27%;
+    width: 27%;
     border-radius: 0.5rem;
     width: fit-content;
     margin: 3rem;

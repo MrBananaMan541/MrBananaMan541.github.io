@@ -25,13 +25,14 @@
             <div id="signIn">
                 <div id="signInInputs">
                     <input type="text" id="username" placeholder="Username" autocomplete="off"></input>
-                    <input type="text" id="password" placeholder="Password" autocomplete="off"></input>
+                    <input type="password" id="password" placeholder="Password" autocomplete="off"></input>
+                    <input type="checkbox" id="passwordCheckbox"></input>
+                    <label for="passwordCheckbox" id="passwordCheckboxLabel">Reveal Password</label>
                 </div>
                 <div id="signInButtons">
                     <button id="signInButton">Sign In</button>
                     <button id="createAccountButton">Create Account</button>
                 </div>
-                <br>
                 <div id="signInStatus">
                     Sign in or create a new user sign in to access your saved work
                 </div>
@@ -40,8 +41,9 @@
                 <div id="textFields">
                     <input type="text" id="classGroupName" placeholder="Class/Group Name" autocomplete="off"></input>
                     <input type="text" id="workItemName" placeholder="Work Item Name" autocomplete="off"></input>
-                    <input type="text" id="dueDate" placeholder="Due Date" autocomplete="off"></input>
+                    <input type="text" id="dueDate" placeholder="Due Date" autocomplete="off"></input>    
                 </div>
+                <input type="text" id="descriptionField" placeholder="Description (optional)" autocomplete="off"></input>
                 <div id="timeAndConfirm">
                     <select id="workTime">
                         <option id="12">12</option>

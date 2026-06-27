@@ -10,11 +10,11 @@
   "license": "ISC",
   "description": "Web page to help keep track of any work that needs to be worked on",
   "devDependencies": {
-    "ts-loader": "^9.6.0",
+    "ts-loader": "^9.6.2",
     "typescript": "^5.9.3",
-    "webpack": "^5.107.2",
+    "webpack": "^5.108.1",
     "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.4",
+    "webpack-dev-server": "^5.2.5",
     "wepack": "^0.0.1"
   }
 }
