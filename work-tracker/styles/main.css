@@ -21,6 +21,10 @@ header {
     align-items: center;
 }
 
+#deleteConfirmation {
+    margin-bottom: 0;
+}
+
 #signInStatus {
     margin-top: 2rem;
 }
@@ -31,15 +35,18 @@ header {
     align-items: center;
 }
 
-#textFields, #timeAndConfirm {
+#groupAndItemNameFields, #dateAndTimeFields, #time {
     display: flex;
     align-items: center;
+}
+
+#time {
+    margin: 1rem 6.15vw;
 }
 
 #addItem {
     border-width: 0.15rem;
     padding: 2%;
-    margin-left: 6rem;
     background-color: #FFFFFF;
 }
 
@@ -111,6 +118,11 @@ input, button, select, option {
     margin-left: 11vw;
 }
 
+#revealPassword {
+    display: flex;
+    align-items: center;
+}
+
 #passwordCheckbox {
     margin: 10px;
 }
@@ -119,17 +131,8 @@ input, button, select, option {
     font-size: large;
 }
 
-#classGroupName {
-    margin-right: 1.5rem;
-}
-
-#workItemName {
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
-}
-
-#dueDate {
-    margin-left: 1.5rem;
+#classGroupName, #workItemName, #dueDate {
+    margin: 1rem 1.5vw;
 }
 
 #descriptionField {
@@ -152,14 +155,6 @@ input, button, select, option {
     overflow-wrap: break-word;
 }
 
-#workTime {
-    margin-left: 0.75rem;
-}
-
-#timeOfDay {
-    margin-right: 6rem;
-}
-
 #workItems h2 {
     margin-left: 2rem;
 }
@@ -168,6 +163,7 @@ input, button, select, option {
     color: black;
     font-size: 1.1rem;
     font-weight: 600;
+    margin: 0.25rem 0;
 }
 
 .todo, .inProgress, .done {
@@ -190,9 +186,10 @@ ul {
 
 li {
     background-color: #c0ddb0;
-    padding: 1.5rem 4rem;
+    padding: 1.5rem 3rem;
     max-width: 27%;
     width: 27%;
+    min-width: 16rem;
     border-radius: 0.5rem;
     width: fit-content;
     margin: 3rem;
@@ -209,6 +206,9 @@ p {
     grid-area: workContainer;
     border-bottom-left-radius: 2rem;
     border-bottom-right-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #sidebar1 {
@@ -229,18 +229,20 @@ p {
     padding: 1em;
     border-radius: 2rem;
     width: fit-content;
+    margin: 0 2rem;
     margin-bottom: 5vh;
 }
 
 #workItems {
     width: 80%;
-    padding: 1rem;
+    margin: 0;
+    margin-top: 1rem;
 }
 
 footer {
     background-color: #425339;
     color: #ededed;
-    padding: 2.5rem;
+    padding: 2.5rem 0;
     text-align: center;
     grid-area: footer;
 }
@@ -249,20 +251,6 @@ footer {
     background-color: #425339;
     grid-area: main;
     min-height: 65vh;
-}
-
-body {
-    background-color: #ededed;
-    display: grid;
-    grid-template-columns: 5vw 90vw auto;
-    grid-template-rows: 20vh auto 15vh;
-    grid-template-areas: 
-        "header header header"
-        "sidebar1 main sidebar2"
-        "footer footer footer";
-}
-
-#main {
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto;
@@ -270,8 +258,144 @@ body {
         "workContainer";
 }
 
-#workContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+body {
+    background-color: #ededed;
+    display: grid;
+    grid-template-columns: auto 90vw auto;
+    grid-template-rows: 20vh auto 15vh;
+    grid-template-areas: 
+        "header header header"
+        "sidebar1 main sidebar2"
+        "footer footer footer";
+}
+
+@media only screen and (max-width:1302px) {
+    #workItems {
+        width: 90%;
+    }
+
+    ul {
+        padding: 1rem;
+    }
+
+    li {
+        margin: 2rem;
+    }
+}
+
+@media only screen and (max-width:880px) {
+    #signIn {
+        margin-bottom: 0;
+    }
+    
+    #signInInputs {
+        flex-direction: column;
+    }
+
+    #signInStatus {
+        margin-top: 1rem;
+    }
+
+    #username, #password {
+        margin: 0.5rem 1rem;
+    }
+
+    #revealPassword {
+        margin-bottom: 0.8rem;
+    }
+
+    #main {
+        min-height: 63.8vh;
+    }
+
+    #newItem {
+        width: 90%;
+    }
+
+    li {
+        margin-right: 0;
+    }
+
+    footer {
+        height: fit-content;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    #newItem {
+        margin-bottom: 1rem;
+    }
+    
+    #groupAndItemNameFields, #dateAndTimeFields {
+        flex-direction: column;
+    }
+
+    #classGroupName, #workItemName, #dueDate, #time {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    #status {
+        margin-bottom: 0;
+    }
+    
+    li {
+        padding: 1.5rem 2.5rem;
+        min-width: 12rem;
+    }
+
+    #deleteUserButton {
+        margin-top: 5vh;
+    }
+}
+
+@media only screen and (max-width:480px) {
+    body {
+        grid-template-columns: auto;
+        grid-template-rows: 20vh auto 15vh;
+        grid-template-areas: 
+            "header"
+            "main"
+            "footer";
+    }
+
+    header {
+        padding: 1rem 2rem;
+    }
+
+    header h3 {
+        font-size: 11pt;
+    }
+
+    #workItems {
+        margin: 0;
+    }
+
+    ul {
+        padding: 0;
+    }
+
+    li {
+        margin: 1rem;
+        margin-right: 0;
+        min-width: 10.5rem;
+    }
+
+    li h3 {
+        font-size: medium;
+    }
+
+    .todoStatus, .todoStatus option {
+        font-size: medium;
+    }
+}
+
+@media only screen and (max-width:320px) {
+    #descriptionField {
+        padding: 1.5rem;
+    }
+
+    li {
+        padding: 1.5rem;
+    }
 }

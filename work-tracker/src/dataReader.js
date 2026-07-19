@@ -24,7 +24,7 @@ const loadJSONFromLocalStorage = (username) => {
 //Add value var as the value of the key var in a temp json object, and then save it to localstorage
 //under the given username
 export const writeToLocalStorage = (username, key, value) => {
-  console.log(`Calling writeToLocalStorage(${key},${value})`);
+  //console.log(`Calling writeToLocalStorage(${key},${value})`);
   const json = loadJSONFromLocalStorage(username);
   json[key] = value;
   localStorage.setItem(username, JSON.stringify(json));
@@ -33,7 +33,7 @@ export const writeToLocalStorage = (username, key, value) => {
 // the value of `key` will be returned from localStorage
 export const readFromLocalStorage = (username, key) => {
   const json = loadJSONFromLocalStorage(username);
-  console.log(`Calling readFromLocalStorage(${key}) with value=${json[key]}`);
+  //console.log(`Calling readFromLocalStorage(${key}) with value=${json[key]}`);
   return json[key];
 }
 

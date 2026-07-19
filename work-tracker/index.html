@@ -26,8 +26,10 @@
                 <div id="signInInputs">
                     <input type="text" id="username" placeholder="Username" autocomplete="off"></input>
                     <input type="password" id="password" placeholder="Password" autocomplete="off"></input>
-                    <input type="checkbox" id="passwordCheckbox"></input>
-                    <label for="passwordCheckbox" id="passwordCheckboxLabel">Reveal Password</label>
+                    <div id="revealPassword">
+                        <input type="checkbox" id="passwordCheckbox"></input>
+                        <label for="passwordCheckbox" id="passwordCheckboxLabel">Reveal Password</label>
+                    </div>
                 </div>
                 <div id="signInButtons">
                     <button id="signInButton">Sign In</button>
@@ -38,33 +40,35 @@
                 </div>
             </div>
             <div id="newItem">
-                <div id="textFields">
+                <div id="groupAndItemNameFields">
                     <input type="text" id="classGroupName" placeholder="Class/Group Name" autocomplete="off"></input>
                     <input type="text" id="workItemName" placeholder="Work Item Name" autocomplete="off"></input>
-                    <input type="text" id="dueDate" placeholder="Due Date" autocomplete="off"></input>    
+                </div>
+                <div id="dateAndTimeFields">
+                    <input type="text" id="dueDate" placeholder="Due Date" autocomplete="off"></input>
+                    <div id="time">
+                        <select id="workTime">
+                            <option id="12">12</option>
+                            <option id="1">1</option>
+                            <option id="2">2</option>
+                            <option id="3">3</option>
+                            <option id="4">4</option>
+                            <option id="5">5</option>
+                            <option id="6">6</option>
+                            <option id="7">7</option>
+                            <option id="8">8</option>
+                            <option id="9">9</option>
+                            <option id="10">10</option>
+                            <option id="11">11</option>
+                        </select>
+                        <select id="timeOfDay">
+                            <option id="am">AM</option>
+                            <option id="pm">PM</option>
+                        </select>    
+                    </div>
                 </div>
                 <input type="text" id="descriptionField" placeholder="Description (optional)" autocomplete="off"></input>
-                <div id="timeAndConfirm">
-                    <select id="workTime">
-                        <option id="12">12</option>
-                        <option id="1">1</option>
-                        <option id="2">2</option>
-                        <option id="3">3</option>
-                        <option id="4">4</option>
-                        <option id="5">5</option>
-                        <option id="6">6</option>
-                        <option id="7">7</option>
-                        <option id="8">8</option>
-                        <option id="9">9</option>
-                        <option id="10">10</option>
-                        <option id="11">11</option>
-                    </select>
-                    <select id="timeOfDay">
-                        <option id="am">AM</option>
-                        <option id="pm">PM</option>
-                    </select>
-                    <button id="addItem">Add New Item</button>
-                </div>
+                <button id="addItem">Add New Item</button>
             </div>
 
             <div id="status">
