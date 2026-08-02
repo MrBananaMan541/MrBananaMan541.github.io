@@ -13,12 +13,28 @@ let currentSelectedImage = document.querySelector(".imagesInCarousel");
 //Reference to the image text below the main carousel image
 let carouselImageText = document.querySelector("#carouselImageText");
 
+//References to the previous and next buttons to allow them to function
 let prevCarouselButton = document.querySelector("#prev");
 let nextCarouselButton = document.querySelector("#next");
 
+//If the user selects new images, add them to the counter so they can be counted down until the last image that
+//was selected can continue the auto looping of the carousel (not sure if I explained this well enough, but
+//hopefully you get the gist)
+let bankedSelectedImageCounter = 0;
+
 //Sets up the functionality to click on each image
 for (let currentImage of shownImages) {
-    currentImage.onclick = e => nextCarouselImage(e.target);
+    currentImage.onclick = e => {
+        //Go to the selected image
+        nextCarouselImage(e.target);
+
+        //Increment the banked counter, so the script knows that there was an image selected before it resumes
+        //auto looping
+        bankedSelectedImageCounter++;
+
+        //Start the new wait for the carousel rotation here
+        setTimeout(carouselLoop, 8000);
+    };
 }
 
 //Handles transitioning the image carousel to the next image given
@@ -35,17 +51,24 @@ function nextCarouselImage(newImage) {
 
 //Handles automatically looping the image carousel
 function carouselLoop() {
-    //If the current image is the last one, and the next one is null, loop back to the first one
-    if(currentSelectedImage.nextElementSibling == null) {
-        nextCarouselImage(document.querySelector(".imagesInCarousel"));
+    //If the user has selected a new image, then skip over selecting next image from the old setTimeout
+    //from the auto carousel, so the new setTimeout can handle selecting the next image
+    if (bankedSelectedImageCounter < 1) {
+        //If the current image is the last one, and the next one is null, loop back to the first one
+        if(currentSelectedImage.nextElementSibling == null) {
+            nextCarouselImage(document.querySelector(".imagesInCarousel"));
+        }
+        //Otherwise continue to the next image
+        else {
+            nextCarouselImage(currentSelectedImage.nextElementSibling);
+        }
+        
+        //Call this function again after 8 seconds to give the viewer time to look at the image before moving on to the next one
+        setTimeout(carouselLoop, 8000);
     }
-    //Otherwise continue to the next image
     else {
-        nextCarouselImage(currentSelectedImage.nextElementSibling);
+        bankedSelectedImageCounter--;
     }
-    
-    //Call this function again after 8 seconds to give the viewer time to look at the image before moving on to the next one
-    setTimeout(carouselLoop, 8000);
 }
 
 const init = () => {
@@ -59,6 +82,13 @@ const init = () => {
         else {
             nextCarouselImage(currentSelectedImage.previousElementSibling);
         }
+
+        //Increment the banked counter, so the script knows that there was an image selected before it resumes
+        //auto looping
+        bankedSelectedImageCounter++;
+
+        //Start the new wait for the carousel rotation here
+        setTimeout(carouselLoop, 8000);
     });
     nextCarouselButton.addEventListener('click', () => {
         //If the current image is the last one, and the next one is null, loop back to the first one
@@ -69,8 +99,15 @@ const init = () => {
         else {
             nextCarouselImage(currentSelectedImage.nextElementSibling);
         }
+
+        //Increment the banked counter, so the script knows that there was an image selected before it resumes
+        //auto looping
+        bankedSelectedImageCounter++;
+
+        //Start the new wait for the carousel rotation here
+        setTimeout(carouselLoop, 8000);
     });
 
-    //Commented out for now as the timing is way off and results in a stack overflow
+    //Start rotating the image carousel 10 seconds after the page loads
     setTimeout(carouselLoop, 10000);
 }

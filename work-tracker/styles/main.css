@@ -29,6 +29,10 @@ header {
     margin-top: 2rem;
 }
 
+button, select {
+    cursor: pointer;
+}
+
 #signInInputs, #signInButtons, #deleteButtons {
     width: fit-content;
     display: flex;
